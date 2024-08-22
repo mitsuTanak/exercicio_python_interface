@@ -1,7 +1,7 @@
-import tkinter as tk
-import math
-from PIL import Image, ImageTk
-import os
+import tkinter as tk # Importa a biblioteca Tkinter para a criação da interface gráfica
+import math # Importa a biblioteca math para realizar operações matemáticas
+from PIL import Image, ImageTk # Importa as classes Image e ImageTk da biblioteca PIL para manipular de imagens
+import os # Importa a biblioteca os para operações
 import sys
 
 def resource_path(relative_path):
@@ -26,11 +26,19 @@ def calcular():
 
         seno = math.sin(radiano)
         cosseno = math.cos(radiano)
-        tangente = math.tan(radiano)
 
+        if cosseno == 0:
+            tangente = 0
+        else:
+            tangente = math.tan(radiano)
+            
+    
         resultado_seno.config(text=f"{seno:.3f}")
         resultado_cosseno.config(text=f"{cosseno:.3f}")
         resultado_tangente.config(text=f"{tangente:.3f}")
+
+
+
 
     except ValueError:
 
@@ -64,7 +72,7 @@ janela.geometry("400x550")
 janela.configure(bg="#f0f0f0")
 
 try:
-    icone_path = resource_path("seno.png")
+    icone_path = resource_path("arquivos_ignore\seno.png")
     icone = Image.open(icone_path)
     icone = ImageTk.PhotoImage(icone)
     janela.iconphoto(True, icone)
@@ -72,7 +80,7 @@ except FileNotFoundError:
     print("Imagem 'seno.png' não encontrada para o ícone")
 
 try:
-    imagem_path = resource_path("seno2.png")
+    imagem_path = resource_path("arquivos_ignore\seno2.png")
     imagem = Image.open(imagem_path)
     imagem = imagem.resize((380, 200), Image.LANCZOS)
     foto = ImageTk.PhotoImage(imagem)
